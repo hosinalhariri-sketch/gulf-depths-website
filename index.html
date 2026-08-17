@@ -207,7 +207,7 @@
             <div class="flex items-center justify-between h-20">
                 <a href="#" class="flex items-center gap-2 sm:gap-3 group">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden border border-[#D4AF37]/40 shadow-lg shadow-[#D4AF37]/25 group-hover:shadow-[#D4AF37]/50 transition-all glow-gold">
-                        <img src="images/gulf-depths-logo.jfif" alt="شعار أعماق الخليج" class="w-full h-full object-cover">
+                        <img src="images/gulf-depths-logo.svg" alt="شعار أعماق الخليج" class="w-full h-full object-contain">
                     </div>
                     <div>
                         <p class="font-extrabold text-sm sm:text-lg leading-tight">أعماق الخليج المحدودة</p>
@@ -266,7 +266,7 @@
         <div id="drawer-content" class="absolute left-0 top-0 bottom-0 w-[280px] bg-[#0A1428] border-r border-[#D4AF37]/20 translate-x-[-100%] transition-transform duration-500 p-8 flex flex-col shadow-2xl">
             <div class="flex items-center justify-between mb-12">
                 <div class="w-12 h-12 rounded-xl border border-[#D4AF37]/40 overflow-hidden">
-                    <img src="images/gulf-depths-logo.png" alt="Logo" class="w-full h-full object-cover">
+                <img src="images/gulf-depths-logo.svg" alt="Logo" class="w-full h-full object-contain">
                 </div>
                 <button id="close-drawer" class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-[#D4AF37]">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -681,7 +681,7 @@
                 <div class="absolute bottom-10 left-10 w-56 h-56 gold-gradient opacity-5 blur-3xl rounded-full"></div>
                 <div class="relative p-12 sm:p-16 text-center min-h-[450px] flex flex-col items-center justify-center">
                     <div class="w-28 h-28 rounded-3xl overflow-hidden border-2 border-[#D4AF37]/50 shadow-2xl shadow-[#D4AF37]/30 mb-8 glow-gold">
-                        <img src="images/gulf-depths-logo.jfif" alt="شعار أعماق الخليج" class="w-full h-full object-cover">
+                        <img src="images/gulf-depths-logo.svg" alt="شعار أعماق الخليج" class="w-full h-full object-contain">
                     </div>
                     <h3 class="text-3xl sm:text-4xl font-black gold-text mb-3">أعماق الخليج المحدودة</h3>
                     <p class="text-gray-300 text-lg mb-6">GULF DEPTHS LIMITED — المملكة العربية السعودية</p>
@@ -897,7 +897,7 @@
                 <div>
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-xl overflow-hidden border border-[#D4AF37]/40">
-                            <img src="images/gulf-depths-logo.jfif" alt="شعار أعماق الخليج" class="w-full h-full object-cover">
+                            <img src="images/gulf-depths-logo.svg" alt="شعار أعماق الخليج" class="w-full h-full object-contain">
                         </div>
                         <div>
                             <p class="font-bold">أعماق الخليج المحدودة</p>
@@ -984,9 +984,9 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.min.js"></script>
 
-    <script>
+        <script>
     // ============================================================
-    //  CINEMATIC SCROLL ANIMATIONS  |  GSAP ScrollTrigger + Motion One
+    //  OPTIMIZED ANIMATIONS  |  Performance Focused
     // ============================================================
     (function () {
         "use strict";
@@ -994,144 +994,34 @@
         /* ---------------- GSAP + ScrollTrigger ---------------- */
         if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
             gsap.registerPlugin(ScrollTrigger);
-            gsap.config({ nullTargetWarn: false });
+            
+            // Fast Hero Load
+            gsap.timeline({ defaults: { ease: "power2.out", duration: 0.8 } })
+                .from(".hero-badge", { y: -20, opacity: 0 })
+                .from(".hero-title", { y: 30, opacity: 0 }, "-=0.4")
+                .from(".hero-desc",  { y: 20, opacity: 0 }, "-=0.4")
+                .from(".hero-cta",   { y: 20, opacity: 0 }, "-=0.4");
 
-            // 1) HERO — cinematic load timeline with blur + scale
-            gsap.timeline({ defaults: { ease: "power3.out" } })
-                .from(".hero-badge", { y: -60, opacity: 0, scale: 0.8, duration: 1, filter: "blur(12px)", clearProps: "all" })
-                .from(".hero-title", { y: 100, opacity: 0, scale: 0.85, duration: 1.3, filter: "blur(8px)", clearProps: "all" }, "-=0.6")
-                .from(".hero-desc",  { y: 50, opacity: 0, duration: 1, clearProps: "all" }, "-=0.7")
-                .from(".hero-cta > *", { y: 45, opacity: 0, scale: 0.9, duration: 0.8, stagger: 0.15, clearProps: "all" }, "-=0.5");
-
-            // 2) HERO — parallax background on scroll
-            gsap.to(".hero-bg", {
-                backgroundPositionY: "40%",
-                ease: "none",
-                scrollTrigger: { trigger: ".hero-bg", start: "top top", end: "bottom top", scrub: true }
-            });
-
-            // 3) Section eyebrows (gold labels) — letter-spacing reveal
-            gsap.utils.toArray("section .tracking-widest").forEach((el) => {
+            // Simple reveals for sections (Faster than previous complex blur)
+            gsap.utils.toArray("section h2, section .stat-item, .card-hover").forEach((el) => {
                 gsap.from(el, {
-                    scrollTrigger: { trigger: el, start: "top 90%" },
-                    y: 40, opacity: 0, letterSpacing: "0.8em", duration: 1, ease: "power2.out", clearProps: "all"
+                    scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" },
+                    y: 30, opacity: 0, duration: 0.6, ease: "power1.out"
                 });
             });
 
-            // 4) Section headings — cinematic blur + rise + slight scale
-            gsap.utils.toArray("section h2").forEach((h2) => {
-                gsap.from(h2, {
-                    scrollTrigger: { trigger: h2, start: "top 85%" },
-                    y: 75, opacity: 0, scale: 0.92, filter: "blur(12px)", duration: 1.2, ease: "power3.out", clearProps: "all"
-                });
-            });
-
-            // 5) Section intro paragraphs
-            gsap.utils.toArray("section p.max-w-2xl").forEach((p) => {
-                if (p.closest(".hero-bg")) return;
-                gsap.from(p, {
-                    scrollTrigger: { trigger: p, start: "top 88%" },
-                    y: 50, opacity: 0, duration: 1, ease: "power2.out", clearProps: "all"
-                });
-            });
-
-            // 6) Cards inside grids — staggered cinematic reveal with rotation
-            gsap.utils.toArray(".grid").forEach((grid) => {
-                const cards = grid.querySelectorAll(".card-hover");
-                if (cards.length < 2) return;
-                gsap.from(cards, {
-                    scrollTrigger: { trigger: grid, start: "top 85%" },
-                    y: 80, opacity: 0, scale: 0.9,
-                    rotation: (i) => (i % 2 === 0 ? -3 : 3),
-                    stagger: 0.12, duration: 1.1, ease: "power3.out", clearProps: "all"
-                });
-            });
-
-            // 7) Standalone cards — sweeping entrance from side
-            gsap.utils.toArray(".card-hover").forEach((card) => {
-                const grid = card.closest(".grid");
-                if (grid && grid.querySelectorAll(".card-hover").length >= 2) return;
-                gsap.from(card, {
-                    scrollTrigger: { trigger: card, start: "top 88%" },
-                    x: -95, opacity: 0, rotation: -5, duration: 1.2, ease: "power3.out", clearProps: "all"
-                });
-            });
-
-            // 8) Card images — slow Ken Burns zoom effect
-            gsap.utils.toArray(".card-hover .img-zoom").forEach((img) => {
-                const holder = img.closest(".card-hover");
-                if (!holder) return;
-                gsap.from(img, {
-                    scrollTrigger: { trigger: holder, start: "top 85%" },
-                    scale: 1.25, duration: 1.5, ease: "power2.out", clearProps: "all"
-                });
-            });
-
-            // 9) Stats — animated counters with gold glow
+            // Fast Stats Counter
             gsap.utils.toArray("#stats .text-4xl").forEach((el) => {
-                const raw = el.textContent.trim();
-                const digits = raw.match(/[\d.]+/);
-                if (!digits) return;
-                const target = parseFloat(digits[0]);
-                const idx = raw.indexOf(digits[0]);
-                const prefix = raw.slice(0, idx);
-                const suffix = raw.slice(idx + digits[0].length);
+                const target = parseFloat(el.textContent.match(/[\d.]+/)[0]);
                 if (isNaN(target)) return;
-                const state = { v: 0 };
-                gsap.fromTo(state, { v: 0 }, {
-                    v: target,
-                    duration: 2.5,
-                    ease: "power2.out",
-                    scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none reverse" },
-                    onUpdate: () => { el.textContent = prefix + Math.round(state.v) + suffix; }
+                let state = { v: 0 };
+                gsap.to(state, {
+                    v: target, duration: 1.5, scrollTrigger: { trigger: el, start: "top 95%" },
+                    onUpdate: () => { el.textContent = el.textContent.replace(/[\d.]+/, Math.round(state.v)); }
                 });
             });
-
-            // 10) Work gallery images — staggered reveal
-            gsap.utils.toArray("#work .grid").forEach((grid) => {
-                const items = grid.querySelectorAll(".card-hover");
-                if (items.length < 2) return;
-                gsap.from(items, {
-                    scrollTrigger: { trigger: grid, start: "top 85%" },
-                    y: 60, opacity: 0, scale: 0.92,
-                    stagger: 0.15, duration: 1, ease: "power3.out", clearProps: "all"
-                });
-            });
-
-            // 11) Profile images — fade + scale
-            gsap.utils.toArray("#profile .card-hover").forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: { trigger: card, start: "top 88%" },
-                    y: 55, opacity: 0, scale: 0.93,
-                    duration: 0.9, delay: (i % 4) * 0.08, ease: "power2.out", clearProps: "all"
-                });
-            });
-
-            // 12) FAQ items — staggered slide-in
-            gsap.utils.toArray(".accordion-item").forEach((item, i) => {
-                gsap.from(item, {
-                    scrollTrigger: { trigger: item, start: "top 90%" },
-                    x: i % 2 === 0 ? -50 : 50, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "all"
-                });
-            });
-
-            // 13) Contact cards — pop-in
-            gsap.utils.toArray("#contact .card-hover").forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: { trigger: card, start: "top 88%" },
-                    y: 60, opacity: 0, scale: 0.85,
-                    duration: 0.9, delay: i * 0.12, ease: "back.out(1.7)", clearProps: "all"
-                });
-            });
-
-            // 14) Footer — fade up
-            gsap.from("footer", {
-                scrollTrigger: { trigger: "footer", start: "top 95%" },
-                y: 40, opacity: 0, duration: 1, ease: "power2.out", clearProps: "all"
-            });
-
-            window.addEventListener("load", () => ScrollTrigger.refresh());
         }
+
 
         /* ---------------- Motion One ---------------- */
         const hasMotion = typeof window !== "undefined" && window.Motion && window.Motion.animate;
