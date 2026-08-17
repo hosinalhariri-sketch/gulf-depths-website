@@ -70,15 +70,140 @@
             box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.15);
         }
         .hero-bg {
-            background-image: 
-                linear-gradient(135deg, rgba(5, 11, 26, 0.97) 0%, rgba(5, 11, 26, 0.75) 40%, rgba(15, 29, 61, 0.9) 100%),
-                url('images/page7-photo-01.png');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #f1f0ee 0%, #efefee 38%, #f6f5f2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('images/page7-photo-01.png') center center / cover no-repeat;
+            opacity: 0.16;
+            transform: scale(1.08);
+            filter: grayscale(0.25) contrast(1.1);
+        }
+        .hero-bg::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 -1px 0;
+            height: 180px;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.12) 20%, rgba(24,24,24,0.12) 100%);
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
+            pointer-events: none;
         }
         .section-pattern {
             background-image: radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.07) 1px, transparent 0);
             background-size: 40px 40px;
+        }
+        .hero-logo-mark {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            background: linear-gradient(135deg, #f4d53c 0%, #f0c922 100%);
+            border-radius: 28px;
+            transform: rotate(45deg);
+            box-shadow: 0 24px 40px rgba(0,0,0,0.12);
+            border: 12px solid #101010;
+            margin: 0 auto 18px;
+        }
+        .hero-logo-mark::before,
+        .hero-logo-mark::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 18px;
+            background: #0b0b0b;
+            box-shadow: inset 0 0 0 18px #f4d53c;
+        }
+        .hero-logo-mark::after {
+            inset: 38px;
+            background: transparent;
+            border: 14px solid #f4d53c;
+            box-shadow: none;
+        }
+        .hero-visual {
+            position: relative;
+            min-height: 640px;
+            border-radius: 42px 0 0 42px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15));
+        }
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('images/page7-photo-01.png') center center / cover no-repeat;
+            filter: grayscale(0.2) brightness(1.0) saturate(0.9);
+            transform: scale(1.05);
+        }
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 26%, rgba(255,255,255,0.14) 100%);
+        }
+        .hero-wave {
+            position: absolute;
+            inset: auto -12% -22% -12%;
+            height: 220px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            transform: rotate(-2deg);
+            box-shadow: inset 0 20px 30px rgba(0,0,0,0.04);
+        }
+        .hero-wave::before {
+            content: "";
+            position: absolute;
+            inset: 16px -8% 0 -8%;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            border: 2px solid rgba(212, 175, 55, 0.35);
+            border-bottom: none;
+            opacity: 0.6;
+        }
+        .hero-metric {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 96px;
+            min-height: 96px;
+            padding: 12px;
+            border-radius: 18px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            background: rgba(255,255,255,0.65);
+            backdrop-filter: blur(5px);
+        }
+        .hero-metric svg {
+            width: 34px;
+            height: 34px;
+            color: #101010;
+        }
+        @media (max-width: 1023px) {
+            .hero-logo-mark {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 12px;
+            }
+            .hero-visual {
+                min-height: 420px;
+                border-radius: 32px;
+            }
+            .hero-wave {
+                height: 140px;
+            }
+        }
+        @media (max-width: 640px) {
+            .hero-bg {
+                min-height: auto;
+            }
+            .hero-visual {
+                min-height: 300px;
+            }
+            .hero-wave {
+                inset: auto -12% -18% -12%;
+                height: 100px;
+            }
         }
         .animate-float {
             animation: float 6s ease-in-out infinite;
@@ -341,38 +466,67 @@
     </div>
 
     <!-- ===== HERO ===== -->
-    <section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70"></div>
-        <div class="absolute top-20 right-20 w-72 h-72 gold-gradient opacity-10 blur-3xl rounded-full animate-float"></div>
-        <div class="absolute bottom-40 left-20 w-96 h-96 gold-gradient opacity-5 blur-3xl rounded-full"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 pt-32 pb-20">
-            <div class="text-center max-w-4xl mx-auto">
-                <div class="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/50 mb-8 backdrop-blur-md">
-                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                    <span class="text-sm text-white font-semibold">شركة وطنية سعودية رائدة في قطاع المقاولات</span>
+    <section class="hero-bg min-h-screen flex items-center relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-white/30 via-white/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-16 lg:py-20">
+            <div class="grid lg:grid-cols-[1.05fr_1fr] gap-8 items-center">
+                <div class="text-center lg:text-right relative z-10">
+                    <div class="flex justify-center lg:justify-start">
+                        <div class="hero-logo-mark"></div>
+                    </div>
+
+                    <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.2] mb-4 text-[#0e0e0e] drop-shadow-[0_2px_0_rgba(255,255,255,0.8)]">
+                        أعماق الخليج المحدودة
+                    </h1>
+
+                    <div class="text-center lg:text-right mb-6">
+                        <p class="text-xl sm:text-2xl font-medium tracking-[0.16em] text-[#111827] opacity-80">GULF DEPTHS LIMITED</p>
+                    </div>
+
+                    <div class="hidden lg:block w-40 h-px bg-[#D4AF37] mx-auto lg:mx-0 my-4"></div>
+
+                    <p class="hero-desc text-[#1f2937] text-lg sm:text-xl leading-relaxed mb-8 max-w-xl lg:mx-0 mx-auto font-medium">
+                        نبني المستقبل بقوة، دقة، واستراتيجية تنفيذ موثوقة.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
+                        <div class="hero-metric">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v5c0 5-3.5 9.5-7 10-3.5-.5-7-5-7-10V7l7-4zm-1 7l2 2 4-4"/></svg>
+                        </div>
+                        <div class="hero-metric">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M14 3.13a4 4 0 0 1 0 7.75M20 21v-2a4 4 0 0 0-3-3.87M9 7a4 4 0 1 0 0 8"/></svg>
+                        </div>
+                        <div class="hero-metric">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4zM8 10h8M8 14h5"/></svg>
+                        </div>
+                        <div class="hero-metric">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16v10H4zM8 11h8M8 15h5"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-0 sm:px-0">
+                        <a href="https://wa.me/966599790231?text=مرحباً،%20أرغب%20في%20الاستفسار%20عن%20خدماتكم" target="_blank"
+                           class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl gold-gradient text-[#050B1A] font-bold text-base sm:text-lg hover:scale-105 transition-transform shadow-xl shadow-[#D4AF37]/30 glow-gold shine-effect">
+                            ابدأ مشروعك الآن
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                        <a href="#services"
+                           class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-[#D4AF37]/40 text-[#111827] font-bold text-base sm:text-lg bg-white/60 hover:bg-[#D4AF37]/10 transition-all">
+                            اكتشف خدماتنا
+                        </a>
+                    </div>
                 </div>
 
-                                <h1 class="hero-title text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.2] mb-6 px-4 text-white drop-shadow-lg">
-                    نبني اليوم<br>
-                    <span class="gold-text">بنية الغد</span> بمعايير عالمية
-                </h1>
-
-                <p class="hero-desc text-white text-base sm:text-lg leading-relaxed mb-10 max-w-2xl mx-auto px-6 drop-shadow-md font-medium">
-                    شركة وطنية تقدم خدمات مقاولات متكاملة تشمل الإنشاءات، البنية التحتية، والأعمال الكهروميكانيكية، مع تركيز دائم على الجودة والابتكار وتحقيق رضا عملائنا في جميع مراحل المشروع.
-                </p>
-
-                                <div class="hero-cta flex flex-col sm:flex-row gap-4 justify-center px-8">
-                    <a href="https://wa.me/966599790231?text=مرحباً،%20أرغب%20في%20الاستفسار%20عن%20خدماتكم" target="_blank"
-                       class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl gold-gradient text-[#050B1A] font-bold text-base sm:text-lg hover:scale-105 transition-transform shadow-xl shadow-[#D4AF37]/30 glow-gold shine-effect">
-                        ابدأ مشروعك الآن
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
-                    <a href="#services"
-                       class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-[#D4AF37]/40 text-[#F0D060] font-bold text-base sm:text-lg hover:bg-[#D4AF37]/10 transition-all">
-                        اكتشف خدماتنا
-                    </a>
+                <div class="relative z-10">
+                    <div class="hero-visual">
+                        <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#f6f4f0] to-transparent"></div>
+                        <div class="hero-wave"></div>
+                        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-[82%] max-w-[420px] h-[130px] bg-white/90 rounded-[50%_50%_45%_45%/60%_60%_40%_40%] border border-[#e0ddd7] shadow-[0_30px_50px_rgba(0,0,0,0.1)] backdrop-blur-sm flex items-center justify-center">
+                            <div class="w-[240px] h-[145px] rounded-[50%] border-[12px] border-[#d9d9d9] bg-gradient-to-b from-[#f5f5f5] to-[#dfe3e7] shadow-inner"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
