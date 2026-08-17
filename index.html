@@ -247,6 +247,22 @@
             display: inline-block;
             min-width: 120px;
         }
+        
+        /* ────── Hover Counter Effects ────── */
+        .hover-counter {
+            padding: 20px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .hover-counter:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(240, 208, 96, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+            transform: translateY(-5px);
+        }
+        .hover-counter:hover .counter {
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased selection:bg-[#D4AF37] selection:text-white">
@@ -379,31 +395,31 @@
     </section>
 
     <!-- ===== STATS COUNTERS ===== -->
-    <section id="stats" class="py-16 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
+    <section id="stats" class="py-20 bg-gradient-to-br from-white via-slate-50 to-blue-50 border-b border-gray-300 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center stat-item animate-stat">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter" data-target="15">0</p>
-                    <p class="text-sm text-gray-600 mt-2 animate-desc">سنة من الخبرة</p>
+                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300 group-hover:scale-110" data-target="15">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">سنة من الخبرة</p>
                 </div>
-                <div class="text-center stat-item animate-stat">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter" data-target="200">0</p>
-                    <p class="text-sm text-gray-600 mt-2 animate-desc">مشروع منجز</p>
+                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300 group-hover:scale-110" data-target="200">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">مشروع منجز</p>
                 </div>
-                <div class="text-center stat-item animate-stat">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter" data-target="98">0</p>
-                    <p class="text-sm text-gray-600 mt-2 animate-desc">رضا العملاء</p>
+                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300 group-hover:scale-110" data-target="98">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">رضا العملاء</p>
                 </div>
-                <div class="text-center stat-item animate-stat">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter-text" data-target="24/7">0</p>
-                    <p class="text-sm text-gray-600 mt-2 animate-desc">دعم متواصل</p>
+                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter-text transition-all duration-300 group-hover:scale-110" data-target="24/7">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">دعم متواصل</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== ABOUT ===== -->
-    <section id="about" class="py-24 bg-white section-pattern">
+    <section id="about" class="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50 section-pattern border-b border-blue-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <!-- Image Side -->
@@ -424,10 +440,10 @@
                         <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">من نحن</span>
                         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mt-3 line-grow">شريكك الموثوق<br>في <span class="gold-text">البناء والتطوير</span></h2>
                     </div>
-                    <p class="text-gray-600 leading-loose text-lg mb-6">
+                    <p class="text-gray-700 leading-loose text-lg mb-6">
                         شركة وطنية سعودية متخصصة في تقديم خدمات المقاولات المتكاملة، تجمع بين الخبرة الهندسية العميقة والالتزام الراسخ بمعايير الجودة العالمية. نعمل على تحويل رؤى عملائنا إلى واقع ملموس من خلال حلول إنشائية مبتكرة ومستدامة.
                     </p>
-                    <p class="text-gray-600 leading-loose mb-10">
+                    <p class="text-gray-700 leading-loose mb-10">
                         نؤمن بأن كل مشروع هو فرصة لبناء الثقة وترسيخ الشراكات، لذلك نضع الجودة والشفافية في صميم عملنا اليومي، ونسعى دائماً لتجاوز توقعات عملائنا في كل مرحلة من مراحل التنفيذ.
                     </p>
 
@@ -440,7 +456,7 @@
                                 </svg>
                             </div>
                             <h3 class="font-bold text-xl mb-2">رؤيتنا</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
+                            <p class="text-gray-700 text-sm leading-relaxed">
                                 بناء شراكات طويلة الأمد مع عملائنا من خلال تقديم خدمات مقاولات موثوقة تعتمد على الجودة والشفافية والالتزام لتحقيق أفضل النتائج في جميع المشاريع.
                             </p>
                         </div>
@@ -464,7 +480,7 @@
     </section>
 
     <!-- ===== WHY CHOOSE US ===== -->
-    <section class="py-24 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
+    <section class="py-24 bg-gradient-to-br from-white via-indigo-50 to-blue-50 border-b border-blue-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">لماذا نحن</span>
@@ -513,7 +529,7 @@
     </section>
 
     <!-- ===== SERVICES ===== -->
-    <section id="services" class="py-24 bg-white section-pattern">
+    <section id="services" class="py-24 bg-gradient-to-br from-white via-sky-50 to-blue-50 section-pattern border-b border-blue-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">خدماتنا</span>
@@ -636,7 +652,7 @@
     </section>
 
     <!-- ===== OUR WORK - Section 1 ===== -->
-    <section id="work" class="py-24 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
+    <section id="work" class="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-b border-blue-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">أعمالنا</span>
@@ -716,7 +732,7 @@
     </section>
 
     <!-- ===== COMPANY PROFILE - Section 2 ===== -->
-    <section id="profile" class="py-24 bg-white section-pattern">
+    <section id="profile" class="py-24 bg-gradient-to-br from-white via-sky-50 to-blue-50 section-pattern border-b border-blue-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">البروفايل</span>
@@ -820,7 +836,7 @@
     </section>
 
     <!-- ===== FAQ ===== -->
-    <section id="faq" class="py-24 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
+    <section id="faq" class="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 border-b border-blue-100 shadow-sm">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">الأسئلة الشائعة</span>
@@ -883,7 +899,7 @@
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section id="contact" class="py-24 bg-white section-pattern relative overflow-hidden">
+    <section id="contact" class="py-24 bg-gradient-to-br from-white via-sky-50 to-blue-50 section-pattern relative overflow-hidden border-b border-blue-100">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] gold-gradient opacity-5 blur-3xl rounded-full"></div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
@@ -1060,26 +1076,34 @@
                 });
             });
 
-            // Fast Stats Counter
-            gsap.utils.toArray("#stats .counter").forEach((el) => {
-                const target = parseInt(el.dataset.target) || 0;
-                if (!el.dataset.target || target === 0) return;
-                let state = { v: 0 };
-                gsap.to(state, {
-                    v: target, 
-                    duration: 3, 
-                    ease: "power2.out", 
-                    scrollTrigger: { 
-                        trigger: el, 
-                        start: "top center",
-                        once: true
-                    },
-                    onUpdate: () => { el.textContent = Math.round(state.v); }
-                });
+            // Stats Counter with hover animation - No scroll trigger
+            const counters = document.querySelectorAll("#stats .counter");
+            const counterTexts = document.querySelectorAll("#stats .counter-text");
+            
+            counters.forEach((el) => {
+                el.textContent = "0";
             });
             
-            gsap.utils.toArray("#stats .counter-text").forEach((el) => {
+            counterTexts.forEach((el) => {
                 el.textContent = el.dataset.target;
+            });
+            
+            // Add hover listeners for animation
+            document.querySelectorAll(".hover-counter").forEach((container) => {
+                container.addEventListener("mouseenter", function() {
+                    const counter = this.querySelector(".counter");
+                    if (!counter) return;
+                    const target = parseInt(counter.dataset.target) || 0;
+                    if (!target) return;
+                    
+                    let state = { v: 0 };
+                    gsap.to(state, {
+                        v: target,
+                        duration: 1.2,
+                        ease: "power2.out",
+                        onUpdate: () => { counter.textContent = Math.round(state.v); }
+                    });
+                });
             });
         }
 
