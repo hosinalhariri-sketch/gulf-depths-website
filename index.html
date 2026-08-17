@@ -1076,10 +1076,11 @@
                 });
             });
 
-            // Stats Counter with hover animation - No scroll trigger
+            // Stats Counter - Hover Animation
             const counters = document.querySelectorAll("#stats .counter");
             const counterTexts = document.querySelectorAll("#stats .counter-text");
             
+            // Initialize all counters to 0
             counters.forEach((el) => {
                 el.textContent = "0";
             });
@@ -1088,7 +1089,7 @@
                 el.textContent = el.dataset.target;
             });
             
-            // Add hover listeners for animation
+            // Add hover listeners for animation - triggers on every hover
             document.querySelectorAll(".hover-counter").forEach((container) => {
                 container.addEventListener("mouseenter", function() {
                     const counter = this.querySelector(".counter");
@@ -1096,12 +1097,19 @@
                     const target = parseInt(counter.dataset.target) || 0;
                     if (!target) return;
                     
+                    // Kill any existing animation
+                    gsap.killTweensOf(counter);
+                    
+                    // Reset to 0 and animate
+                    counter.textContent = "0";
                     let state = { v: 0 };
                     gsap.to(state, {
                         v: target,
-                        duration: 1.2,
+                        duration: 1.5,
                         ease: "power2.out",
-                        onUpdate: () => { counter.textContent = Math.round(state.v); }
+                        onUpdate: () => { 
+                            counter.textContent = Math.round(state.v); 
+                        }
                     });
                 });
             });
