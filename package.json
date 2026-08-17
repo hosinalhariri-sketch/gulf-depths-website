@@ -1,0 +1,26 @@
+{
+  "name": "mmmmm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hosinalhariri-sketch/gulf-depths-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hosinalhariri-sketch/gulf-depths-website/issues"
+  },
+  "homepage": "https://github.com/hosinalhariri-sketch/gulf-depths-website#readme",
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.6",
+    "pdfjs-dist": "^6.2.108",
+    "tesseract.js": "^7.0.0"
+  }
+}
