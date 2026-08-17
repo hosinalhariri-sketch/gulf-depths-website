@@ -1063,10 +1063,17 @@
             // Fast Stats Counter
             gsap.utils.toArray("#stats .counter").forEach((el) => {
                 const target = parseInt(el.dataset.target) || 0;
-                if (!el.dataset.target) return;
+                if (!el.dataset.target || target === 0) return;
                 let state = { v: 0 };
                 gsap.to(state, {
-                    v: target, duration: 2.5, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 75%" },
+                    v: target, 
+                    duration: 3, 
+                    ease: "power2.out", 
+                    scrollTrigger: { 
+                        trigger: el, 
+                        start: "top center",
+                        once: true
+                    },
                     onUpdate: () => { el.textContent = Math.round(state.v); }
                 });
             });
