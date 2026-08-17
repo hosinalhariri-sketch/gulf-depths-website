@@ -395,7 +395,7 @@
                     <p class="text-sm text-gray-700 mt-3 font-medium">رضا العملاء</p>
                 </div>
                 <div class="text-center stat-item animate-stat">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter-text transition-all duration-300" data-target="24/7">0</p>
+                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300" data-target="24" data-suffix="/7">0</p>
                     <p class="text-sm text-gray-700 mt-3 font-medium">دعم متواصل</p>
                 </div>
             </div>
@@ -1062,42 +1062,37 @@
 
             // Stats Counter - Scroll Animation (When user scrolls to this section)
             const counters = document.querySelectorAll("#stats .counter");
-            const counterTexts = document.querySelectorAll("#stats .counter-text");
-            let hasAnimated = false; // Track if animation has run
-            
-            // Initialize all counters to 0
-            counters.forEach((el) => {
-                el.textContent = "0";
-            });
-            
-            counterTexts.forEach((el) => {
-                el.textContent = el.dataset.target;
-            });
-            
-            // Animate counters when scrolling into view - ONLY ONCE
+
             counters.forEach((counter) => {
-                const target = parseInt(counter.dataset.target) || 0;
-                if (!target) return;
-                
-                gsap.to(counter, {
-                    scrollTrigger: {
-                        trigger: "#stats",
-                        start: "top center",
-                        onEnter: () => {
-                            if (!hasAnimated) {
-                                hasAnimated = true;
-                                // Start animation
-                                gsap.to(counter, {
-                                    duration: 3,
-                                    ease: "power2.out",
-                                    onUpdate: function() {
-                                        counter.textContent = Math.round(this.progress() * target);
-                                    }
-                                });
+                const target = Number.parseInt(counter.dataset.target || "0", 10);
+                const suffix = counter.dataset.suffix || "";
+                counter.textContent = "0" + suffix;
+            });
+
+            ScrollTrigger.create({
+                trigger: "#stats",
+                start: "top 80%",
+                once: true,
+                onEnter: () => {
+                    counters.forEach((counter) => {
+                        const target = Number.parseInt(counter.dataset.target || "0", 10);
+                        const suffix = counter.dataset.suffix || "";
+                        if (!target) return;
+
+                        const value = { current: 0 };
+                        gsap.to(value, {
+                            current: target,
+                            duration: 2.8,
+                            ease: "power2.out",
+                            onUpdate: function () {
+                                counter.textContent = `${Math.round(value.current)}${suffix}`;
+                            },
+                            onComplete: function () {
+                                counter.textContent = `${target}${suffix}`;
                             }
-                        }
-                    }
-                });
+                        });
+                    });
+                }
             });
         }
 
