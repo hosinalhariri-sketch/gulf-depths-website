@@ -1060,39 +1060,55 @@
                 });
             });
 
-            // Stats Counter - Scroll Animation (When user scrolls to this section)
+            // Stats Counter - Scroll Animation (repeat every time the section enters view)
             const counters = document.querySelectorAll("#stats .counter");
+            const counterStates = new Map();
 
             counters.forEach((counter) => {
                 const target = Number.parseInt(counter.dataset.target || "0", 10);
                 const suffix = counter.dataset.suffix || "";
+                const state = { current: 0 };
+                counterStates.set(counter, state);
                 counter.textContent = "0" + suffix;
+
+                if (!target) return;
+
+                const animateCounter = () => {
+                    gsap.killTweensOf(state);
+                    state.current = 0;
+                    counter.textContent = "0" + suffix;
+
+                    gsap.to(state, {
+                        current: target,
+                        duration: 2.8,
+                        ease: "power2.out",
+                        onUpdate: function () {
+                            counter.textContent = `${Math.round(state.current)}${suffix}`;
+                        },
+                        onComplete: function () {
+                            counter.textContent = `${target}${suffix}`;
+                        }
+                    });
+                };
+
+                counter._animateCounter = animateCounter;
             });
+
+            const runCounterAnimation = () => {
+                counters.forEach((counter) => {
+                    if (counter._animateCounter) {
+                        counter._animateCounter();
+                    }
+                });
+            };
 
             ScrollTrigger.create({
                 trigger: "#stats",
                 start: "top 80%",
-                once: true,
-                onEnter: () => {
-                    counters.forEach((counter) => {
-                        const target = Number.parseInt(counter.dataset.target || "0", 10);
-                        const suffix = counter.dataset.suffix || "";
-                        if (!target) return;
-
-                        const value = { current: 0 };
-                        gsap.to(value, {
-                            current: target,
-                            duration: 2.8,
-                            ease: "power2.out",
-                            onUpdate: function () {
-                                counter.textContent = `${Math.round(value.current)}${suffix}`;
-                            },
-                            onComplete: function () {
-                                counter.textContent = `${target}${suffix}`;
-                            }
-                        });
-                    });
-                }
+                end: "bottom 20%",
+                onEnter: runCounterAnimation,
+                onEnterBack: runCounterAnimation,
+                toggleActions: "play none none reverse"
             });
         }
 
