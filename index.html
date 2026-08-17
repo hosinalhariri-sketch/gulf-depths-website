@@ -70,7 +70,7 @@
             box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.15);
         }
         .hero-bg {
-            background: #f2f2f0;
+            background: #ffffff;
             position: relative;
             overflow: hidden;
         }
@@ -78,48 +78,21 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(255,255,255,0.84) 0%, rgba(255,255,255,0.50) 35%, rgba(255,255,255,0.18) 100%);
+            background: url('images/page7-photo-01.png') center center / cover no-repeat;
+            opacity: 0.12;
+            filter: grayscale(0.2) contrast(1.1) brightness(1.0);
             z-index: 0;
         }
         .hero-bg::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: url('images/page7-photo-01.png') center center / cover no-repeat;
-            opacity: 0.25;
-            filter: grayscale(0.2) contrast(1.05) brightness(1.04);
+            background: linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.82) 32%, rgba(255,255,255,0.24) 100%);
             z-index: 0;
         }
         .section-pattern {
             background-image: radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.07) 1px, transparent 0);
             background-size: 40px 40px;
-        }
-        .hero-logo-mark {
-            position: relative;
-            width: 160px;
-            height: 160px;
-            transform: rotate(45deg);
-            border-radius: 26px;
-            background: linear-gradient(135deg, #f4d636 0%, #f3c91b 100%);
-            box-shadow: 0 20px 32px rgba(0,0,0,0.10);
-            border: 10px solid #101010;
-            margin-bottom: 18px;
-        }
-        .hero-logo-mark::before {
-            content: "";
-            position: absolute;
-            inset: 20px;
-            background: #0f0f0f;
-            border-radius: 18px;
-            box-shadow: inset 0 0 0 18px #f4d636;
-        }
-        .hero-logo-mark::after {
-            content: "";
-            position: absolute;
-            inset: 52px;
-            border: 12px solid #f4d636;
-            background: transparent;
-            border-radius: 14px;
         }
         .hero-visual {
             position: relative;
@@ -169,13 +142,17 @@
             height: 82px;
             border-radius: 18px;
             border: 1px solid rgba(15, 23, 42, 0.08);
-            background: rgba(255,255,255,0.72);
+            background: rgba(255,255,255,0.82);
             box-shadow: 0 8px 18px rgba(0,0,0,0.05);
         }
         .hero-metric svg {
-            width: 34px;
-            height: 34px;
-            color: #111827;
+            width: 32px;
+            height: 32px;
+            stroke-width: 1.9;
+            stroke: #111827;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
         @media (max-width: 1023px) {
             .hero-logo-mark {
@@ -191,6 +168,14 @@
                 height: 150px;
                 bottom: -18%;
             }
+            .hero-metric {
+                width: 68px;
+                height: 68px;
+            }
+            .hero-metric svg {
+                width: 28px;
+                height: 28px;
+            }
         }
         @media (max-width: 640px) {
             .hero-bg {
@@ -203,6 +188,15 @@
             .hero-wave {
                 height: 110px;
                 bottom: -12%;
+            }
+            .hero-metric {
+                width: 60px;
+                height: 60px;
+                border-radius: 14px;
+            }
+            .hero-metric svg {
+                width: 24px;
+                height: 24px;
             }
         }
         .animate-float {
@@ -471,10 +465,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 py-14 lg:py-20">
             <div class="grid lg:grid-cols-[1.05fr_1fr] gap-8 items-center">
                 <div class="text-center lg:text-right relative z-10">
-                    <div class="flex justify-center lg:justify-start">
-                        <div class="hero-logo-mark"></div>
-                    </div>
-
                     <h1 class="hero-title text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black leading-[1.2] mb-3 text-[#0b0b0b]">
                         أعماق الخليج المحدودة
                     </h1>
@@ -490,17 +480,35 @@
                     </p>
 
                     <div class="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
-                        <div class="hero-metric">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v5c0 5-3.5 9.5-7 10-3.5-.5-7-5-7-10V7l7-4zm-1 7l2 2 4-4"/></svg>
+                        <div class="hero-metric" aria-label="خبرة">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3.5l7 4v5.1c0 4.6-3.2 8.9-7 9.9-3.8-1-7-5.3-7-9.9v-5.1l7-4z"/>
+                                <path d="M9.5 12.3l1.8 1.8 3.7-4.2"/>
+                            </svg>
                         </div>
-                        <div class="hero-metric">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M14 3.13a4 4 0 0 1 0 7.75M20 21v-2a4 4 0 0 0-3-3.87M9 7a4 4 0 1 0 0 8"/></svg>
+                        <div class="hero-metric" aria-label="فريق">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M16.5 19v-1.2a3.3 3.3 0 0 0-3.3-3.3H10.8a3.3 3.3 0 0 0-3.3 3.3V19"/>
+                                <circle cx="12" cy="8.2" r="3.1"/>
+                                <path d="M19 19v-1a3.2 3.2 0 0 0-2.2-3.1"/>
+                                <path d="M5 19v-1a3.2 3.2 0 0 1 2.2-3.1"/>
+                            </svg>
                         </div>
-                        <div class="hero-metric">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4zM8 10h8M8 14h5"/></svg>
+                        <div class="hero-metric" aria-label="مشاريع">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 4.2h7l4 4v11.1a1.7 1.7 0 0 1-1.7 1.7H7a1.7 1.7 0 0 1-1.7-1.7V6a1.8 1.8 0 0 1 1.7-1.8z"/>
+                                <path d="M14 4.2v4h4"/>
+                                <path d="M8.5 12h7"/>
+                                <path d="M8.5 15.5h7"/>
+                            </svg>
                         </div>
-                        <div class="hero-metric">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16v10H4zM8 11h8M8 15h5"/></svg>
+                        <div class="hero-metric" aria-label="دعم">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4.5 18.5h15"/>
+                                <path d="M7 18.5V8.8l5-4 5 4v9.7"/>
+                                <path d="M10 12.8h4"/>
+                                <path d="M12 10.7v4.2"/>
+                            </svg>
                         </div>
                     </div>
 
@@ -523,9 +531,6 @@
                     <div class="hero-visual">
                         <div class="absolute inset-0 bg-gradient-to-r from-white/20 via-white/0 to-transparent"></div>
                         <div class="hero-wave"></div>
-                        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-[82%] max-w-[420px] h-[120px] bg-white/90 rounded-[50%_50%_45%_45%/60%_60%_40%_40%] border border-[#e4e1dd] shadow-[0_24px_40px_rgba(0,0,0,0.08)] backdrop-blur-sm flex items-center justify-center">
-                            <div class="w-[230px] h-[150px] rounded-[50%] border-[12px] border-[#d9d9d9] bg-gradient-to-b from-[#f5f5f5] to-[#dfe3e7] shadow-inner"></div>
-                        </div>
                     </div>
                 </div>
             </div>
