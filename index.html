@@ -18,9 +18,9 @@
         
         /* ── Luxurious Color Palette ── */
         :root {
-            --deep-navy: #050B1A;
-            --rich-navy: #0A1428;
-            --mid-navy: #0F1D3D;
+            --deep-navy: #FFFFFF;
+            --rich-navy: #F5F5F5;
+            --mid-navy: #FFFFFF;
             --royal-gold: #D4AF37;
             --bright-gold: #F0D060;
             --soft-gold: #E8C547;
@@ -51,9 +51,16 @@
             100% { background-position: 300% center; }
         }
         .nav-blur {
-            background: rgba(5, 11, 26, 0.92);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
+            border-color: rgba(212, 175, 55, 0.3) !important;
+        }
+        .nav-blur a, .nav-blur p {
+            color: #1a1a1a;
+        }
+        .nav-blur .text-gray-300 {
+            color: #666 !important;
         }
         .card-hover {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -197,12 +204,55 @@
         .shine-effect:hover::before {
             left: 150%;
         }
+        
+        /* ── Animated Stats & Descriptions ── */
+        @keyframes slideUpIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .animate-stat {
+            animation: slideUpIn 0.8s ease-out forwards;
+        }
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.3s; }
+        .stat-item:nth-child(3) { animation-delay: 0.5s; }
+        .stat-item:nth-child(4) { animation-delay: 0.7s; }
+        
+        .animate-desc {
+            animation: slideUpIn 0.6s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+        .stat-item:nth-child(1) .animate-desc { animation-delay: 0.5s; }
+        .stat-item:nth-child(2) .animate-desc { animation-delay: 0.7s; }
+        .stat-item:nth-child(3) .animate-desc { animation-delay: 0.9s; }
+        .stat-item:nth-child(4) .animate-desc { animation-delay: 1.1s; }
+        
+        .counter {
+            display: inline-block;
+            min-width: 120px;
+        }
     </style>
 </head>
-<body class="bg-[#050B1A] text-white antialiased selection:bg-[#D4AF37] selection:text-[#050B1A]">
+<body class="bg-white text-gray-800 antialiased selection:bg-[#D4AF37] selection:text-white">
 
         <!-- ===== NAVBAR ===== -->
-    <nav class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-[#D4AF37]/20">
+    <nav class="fixed top-0 inset-x-0 z-50 nav-blur border-b border-[#D4AF37]/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="#" class="flex items-center gap-2 sm:gap-3 group">
@@ -217,27 +267,27 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center gap-8">
-                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-[#D4AF37] transition-colors relative group">
+                    <a href="#about" class="text-sm font-medium text-gray-600 hover:text-[#D4AF37] transition-colors relative group">
                         من نحن
                         <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#services" class="text-sm font-medium text-gray-300 hover:text-[#D4AF37] transition-colors relative group">
+                    <a href="#services" class="text-sm font-medium text-gray-600 hover:text-[#D4AF37] transition-colors relative group">
                         خدماتنا
                         <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#work" class="text-sm font-medium text-gray-300 hover:text-[#D4AF37] transition-colors relative group">
+                    <a href="#work" class="text-sm font-medium text-gray-600 hover:text-[#D4AF37] transition-colors relative group">
                         أعمالنا
                         <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#profile" class="text-sm font-medium text-gray-300 hover:text-[#D4AF37] transition-colors relative group">
+                    <a href="#profile" class="text-sm font-medium text-gray-600 hover:text-[#D4AF37] transition-colors relative group">
                         البروفايل
                         <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#faq" class="text-sm font-medium text-gray-300 hover:text-[#D4AF37] transition-colors relative group">
+                    <a href="#faq" class="text-sm font-medium text-gray-600 hover:text-[#D4AF37] transition-colors relative group">
                         الأسئلة الشائعة
                         <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-[#D4AF37] transition-colors relative group">
+                    <a href="#contact" class="text-sm font-medium text-gray-600 hover:text-[#D4AF37] transition-colors relative group">
                         تواصل معنا
                         <span class="absolute -bottom-1 right-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
                     </a>
@@ -329,31 +379,31 @@
     </section>
 
     <!-- ===== STATS COUNTERS ===== -->
-    <section id="stats" class="py-16 bg-[#0A1428] border-b border-white/5">
+    <section id="stats" class="py-16 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center stat-item">
-                    <p class="text-4xl md:text-5xl font-black gold-text">+15</p>
-                    <p class="text-sm text-gray-400 mt-2">سنة من الخبرة</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter" data-target="15">0</p>
+                    <p class="text-sm text-gray-600 mt-2 animate-desc">سنة من الخبرة</p>
                 </div>
-                <div class="text-center stat-item">
-                    <p class="text-4xl md:text-5xl font-black gold-text">+200</p>
-                    <p class="text-sm text-gray-400 mt-2">مشروع منجز</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter" data-target="200">0</p>
+                    <p class="text-sm text-gray-600 mt-2 animate-desc">مشروع منجز</p>
                 </div>
-                <div class="text-center stat-item">
-                    <p class="text-4xl md:text-5xl font-black gold-text">98%</p>
-                    <p class="text-sm text-gray-400 mt-2">رضا العملاء</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter" data-target="98">0</p>
+                    <p class="text-sm text-gray-600 mt-2 animate-desc">رضا العملاء</p>
                 </div>
-                <div class="text-center stat-item">
-                    <p class="text-4xl md:text-5xl font-black gold-text">24/7</p>
-                    <p class="text-sm text-gray-400 mt-2">دعم متواصل</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter-text" data-target="24/7">0</p>
+                    <p class="text-sm text-gray-600 mt-2 animate-desc">دعم متواصل</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== ABOUT ===== -->
-    <section id="about" class="py-24 section-pattern">
+    <section id="about" class="py-24 bg-white section-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <!-- Image Side -->
@@ -374,10 +424,10 @@
                         <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">من نحن</span>
                         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mt-3 line-grow">شريكك الموثوق<br>في <span class="gold-text">البناء والتطوير</span></h2>
                     </div>
-                    <p class="text-gray-300 leading-loose text-lg mb-6">
+                    <p class="text-gray-600 leading-loose text-lg mb-6">
                         شركة وطنية سعودية متخصصة في تقديم خدمات المقاولات المتكاملة، تجمع بين الخبرة الهندسية العميقة والالتزام الراسخ بمعايير الجودة العالمية. نعمل على تحويل رؤى عملائنا إلى واقع ملموس من خلال حلول إنشائية مبتكرة ومستدامة.
                     </p>
-                    <p class="text-gray-400 leading-loose mb-10">
+                    <p class="text-gray-600 leading-loose mb-10">
                         نؤمن بأن كل مشروع هو فرصة لبناء الثقة وترسيخ الشراكات، لذلك نضع الجودة والشفافية في صميم عملنا اليومي، ونسعى دائماً لتجاوز توقعات عملائنا في كل مرحلة من مراحل التنفيذ.
                     </p>
 
@@ -414,7 +464,7 @@
     </section>
 
     <!-- ===== WHY CHOOSE US ===== -->
-    <section class="py-24 bg-[#0A1428]">
+    <section class="py-24 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">لماذا نحن</span>
@@ -463,7 +513,7 @@
     </section>
 
     <!-- ===== SERVICES ===== -->
-    <section id="services" class="py-24 section-pattern">
+    <section id="services" class="py-24 bg-white section-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">خدماتنا</span>
@@ -586,7 +636,7 @@
     </section>
 
     <!-- ===== OUR WORK - Section 1 ===== -->
-    <section id="work" class="py-24 bg-[#0A1428]">
+    <section id="work" class="py-24 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">أعمالنا</span>
@@ -666,7 +716,7 @@
     </section>
 
     <!-- ===== COMPANY PROFILE - Section 2 ===== -->
-    <section id="profile" class="py-24 section-pattern">
+    <section id="profile" class="py-24 bg-white section-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">البروفايل</span>
@@ -770,7 +820,7 @@
     </section>
 
     <!-- ===== FAQ ===== -->
-    <section id="faq" class="py-24 bg-[#0A1428]">
+    <section id="faq" class="py-24 bg-gradient-to-b from-white via-blue-50 to-white border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-[#D4AF37] font-bold text-sm tracking-widest uppercase">الأسئلة الشائعة</span>
@@ -833,7 +883,7 @@
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section id="contact" class="py-24 section-pattern relative overflow-hidden">
+    <section id="contact" class="py-24 bg-white section-pattern relative overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] gold-gradient opacity-5 blur-3xl rounded-full"></div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
@@ -890,7 +940,7 @@
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="border-t border-white/10 bg-[#0A1428]">
+    <footer class="border-t border-gray-200 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="grid md:grid-cols-4 gap-10">
                 <!-- About -->
@@ -904,7 +954,7 @@
                             <p class="text-xs text-gray-500">GULF DEPTHS LIMITED</p>
                         </div>
                     </div>
-                    <p class="text-gray-500 text-sm leading-relaxed">شركة وطنية سعودية متخصصة في المقاولات العامة والبنية التحتية، نلتزم بالجودة والابتكار في كل مشروع.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">شركة وطنية سعودية متخصصة في المقاولات العامة والبنية التحتية، نلتزم بالجودة والابتكار في كل مشروع.</p>
                 </div>
 
                 <!-- Quick Links -->
@@ -975,7 +1025,7 @@
             </div>
         </div>
         <div class="footer-bottom border-t border-white/10 py-6">
-            <p class="text-center text-gray-500 text-sm">© 2026 شركة أعماق الخليج المحدودة — جميع الحقوق محفوظة</p>
+            <p class="text-center text-gray-400 text-sm">© 2026 شركة أعماق الخليج المحدودة — جميع الحقوق محفوظة</p>
         </div>
     </footer>
 
@@ -1011,14 +1061,23 @@
             });
 
             // Fast Stats Counter
-            gsap.utils.toArray("#stats .text-4xl").forEach((el) => {
-                const target = parseFloat(el.textContent.match(/[\d.]+/)[0]);
+            gsap.utils.toArray("#stats .counter").forEach((el) => {
+                const target = parseFloat(el.textContent.match(/[\d.]+/)?.[0] || el.dataset.target || 0);
                 if (isNaN(target)) return;
                 let state = { v: 0 };
                 gsap.to(state, {
-                    v: target, duration: 1.5, scrollTrigger: { trigger: el, start: "top 95%" },
-                    onUpdate: () => { el.textContent = el.textContent.replace(/[\d.]+/, Math.round(state.v)); }
+                    v: target, duration: 2.5, scrollTrigger: { trigger: el, start: "top 95%" },
+                    onUpdate: () => { el.textContent = Math.round(state.v).toLocaleString('ar-SA'); }
                 });
+            });
+            
+            gsap.utils.toArray("#stats .counter-text").forEach((el) => {
+                if (el.dataset.target === "24/7") {
+                    gsap.timeline({ scrollTrigger: { trigger: el, start: "top 95%" } })
+                        .set(el, { textContent: "" })
+                        .to({}, { duration: 0.3 })
+                        .set(el, { textContent: el.dataset.target });
+                }
             });
         }
 
@@ -1067,10 +1126,10 @@
                 Motion.scroll((p) => {
                     const progress = (typeof p === "number" ? p : (p && p.progress)) || 0;
                     if (progress > 0.03) {
-                        nav.style.borderBottomColor = "rgba(212,175,55,0.45)";
-                        nav.style.boxShadow = "0 12px 35px -12px rgba(0,0,0,0.6)";
+                        nav.style.borderBottomColor = "rgba(212,175,55,0.4)";
+                        nav.style.boxShadow = "0 12px 35px -12px rgba(0,0,0,0.1)";
                     } else {
-                        nav.style.borderBottomColor = "rgba(212,175,55,0.2)";
+                        nav.style.borderBottomColor = "rgba(212,175,55,0.3)";
                         nav.style.boxShadow = "none";
                     }
                 });
