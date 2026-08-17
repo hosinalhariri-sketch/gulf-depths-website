@@ -247,22 +247,6 @@
             display: inline-block;
             min-width: 120px;
         }
-        
-        /* ────── Hover Counter Effects ────── */
-        .hover-counter {
-            padding: 20px;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-        .hover-counter:hover {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(240, 208, 96, 0.05) 100%);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
-            transform: translateY(-5px);
-        }
-        .hover-counter:hover .counter {
-            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
-        }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased selection:bg-[#D4AF37] selection:text-white">
@@ -398,21 +382,21 @@
     <section id="stats" class="py-20 bg-gradient-to-br from-white via-slate-50 to-blue-50 border-b border-gray-300 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300 group-hover:scale-110" data-target="15">0</p>
-                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">سنة من الخبرة</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300" data-target="15">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium">سنة من الخبرة</p>
                 </div>
-                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300 group-hover:scale-110" data-target="200">0</p>
-                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">مشروع منجز</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300" data-target="200">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium">مشروع منجز</p>
                 </div>
-                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300 group-hover:scale-110" data-target="98">0</p>
-                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">رضا العملاء</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter transition-all duration-300" data-target="98">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium">رضا العملاء</p>
                 </div>
-                <div class="text-center stat-item animate-stat group cursor-pointer hover-counter">
-                    <p class="text-4xl md:text-5xl font-black gold-text counter-text transition-all duration-300 group-hover:scale-110" data-target="24/7">0</p>
-                    <p class="text-sm text-gray-700 mt-3 font-medium group-hover:text-[#D4AF37] transition-colors">دعم متواصل</p>
+                <div class="text-center stat-item animate-stat">
+                    <p class="text-4xl md:text-5xl font-black gold-text counter-text transition-all duration-300" data-target="24/7">0</p>
+                    <p class="text-sm text-gray-700 mt-3 font-medium">دعم متواصل</p>
                 </div>
             </div>
         </div>
@@ -1076,7 +1060,7 @@
                 });
             });
 
-            // Stats Counter - Hover Animation
+            // Stats Counter - Scroll Animation (When user scrolls to this section)
             const counters = document.querySelectorAll("#stats .counter");
             const counterTexts = document.querySelectorAll("#stats .counter-text");
             
@@ -1089,28 +1073,23 @@
                 el.textContent = el.dataset.target;
             });
             
-            // Add hover listeners for animation - triggers on every hover
-            document.querySelectorAll(".hover-counter").forEach((container) => {
-                container.addEventListener("mouseenter", function() {
-                    const counter = this.querySelector(".counter");
-                    if (!counter) return;
-                    const target = parseInt(counter.dataset.target) || 0;
-                    if (!target) return;
-                    
-                    // Kill any existing animation
-                    gsap.killTweensOf(counter);
-                    
-                    // Reset to 0 and animate
-                    counter.textContent = "0";
-                    let state = { v: 0 };
-                    gsap.to(state, {
-                        v: target,
-                        duration: 1.5,
-                        ease: "power2.out",
-                        onUpdate: () => { 
-                            counter.textContent = Math.round(state.v); 
-                        }
-                    });
+            // Animate counters when scrolling into view
+            counters.forEach((counter) => {
+                const target = parseInt(counter.dataset.target) || 0;
+                if (!target) return;
+                
+                gsap.to(counter, {
+                    scrollTrigger: {
+                        trigger: "#stats",
+                        start: "top center",
+                        once: true // Only animate once
+                    },
+                    duration: 3,
+                    ease: "power2.out",
+                    textContent: target,
+                    onUpdate: function() {
+                        counter.textContent = Math.round(this.progress() * target);
+                    }
                 });
             });
         }
