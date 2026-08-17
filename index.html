@@ -656,9 +656,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01M15 12v.01M15 15v.01M15 18v.01"/>
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold">مشاريع نوعية</h3>
+                                <h3 class="text-xl font-bold text-white drop-shadow-lg">مشاريع نوعية</h3>
                             </div>
-                            <p class="text-gray-300 text-sm">نفخر بتنفيذ مشاريع تعكس التزامنا بأعلى معايير الجودة والاحترافية</p>
+                            <p class="text-white text-sm drop-shadow-md">نفخر بتنفيذ مشاريع تعكس التزامنا بأعلى معايير الجودة والاحترافية</p>
                         </div>
                     </div>
                 </div>
@@ -674,9 +674,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
                                     </svg>
                                 </div>
-                                <h3 class="text-xl font-bold">أعمال ميدانية</h3>
+                                <h3 class="text-xl font-bold text-white drop-shadow-lg">أعمال ميدانية</h3>
                             </div>
-                            <p class="text-gray-300 text-sm">لقطات حية من مواقع العمل توثق قدرات فريقنا وآلياتنا الثقيلة</p>
+                            <p class="text-white text-sm drop-shadow-md">لقطات حية من مواقع العمل توثق قدرات فريقنا وآلياتنا الثقيلة</p>
                         </div>
                     </div>
                 </div>
@@ -688,8 +688,8 @@
                     <img src="images/page5-photo-01.png" alt="أعمال الحفر" class="w-full h-[280px] object-cover img-zoom">
                     <div class="absolute inset-0 cinematic-overlay opacity-70 group-hover:opacity-90 transition-opacity flex items-end">
                         <div class="p-5 w-full">
-                            <h3 class="font-bold text-lg">أعمال الحفر</h3>
-                            <p class="text-gray-300 text-xs">حفارات وآليات ثقيلة في مواقع العمل</p>
+                            <h3 class="font-bold text-lg text-white drop-shadow-lg">أعمال الحفر</h3>
+                            <p class="text-white text-xs drop-shadow-md">حفارات وآليات ثقيلة في مواقع العمل</p>
                         </div>
                     </div>
                 </div>
@@ -697,8 +697,8 @@
                     <img src="images/page5-photo-04.png" alt="أعمال البنية التحتية" class="w-full h-[280px] object-cover img-zoom">
                     <div class="absolute inset-0 cinematic-overlay opacity-70 group-hover:opacity-90 transition-opacity flex items-end">
                         <div class="p-5 w-full">
-                            <h3 class="font-bold text-lg">البنية التحتية</h3>
-                            <p class="text-gray-300 text-xs">تنفيذ مشاريع البنية التحتية بمعايير عالمية</p>
+                            <h3 class="font-bold text-lg text-white drop-shadow-lg">البنية التحتية</h3>
+                            <p class="text-white text-xs drop-shadow-md">تنفيذ مشاريع البنية التحتية بمعايير عالمية</p>
                         </div>
                     </div>
                 </div>
@@ -706,8 +706,8 @@
                     <img src="images/page7-photo-04.png" alt="العمالة الميدانية" class="w-full h-[280px] object-cover img-zoom">
                     <div class="absolute inset-0 cinematic-overlay opacity-70 group-hover:opacity-90 transition-opacity flex items-end">
                         <div class="p-5 w-full">
-                            <h3 class="font-bold text-lg">العمالة الميدانية</h3>
-                            <p class="text-gray-300 text-xs">فريق عمل محترف في مواقع التنفيذ</p>
+                            <h3 class="font-bold text-lg text-white drop-shadow-lg">العمالة الميدانية</h3>
+                            <p class="text-white text-xs drop-shadow-md">فريق عمل محترف في مواقع التنفيذ</p>
                         </div>
                     </div>
                 </div>
@@ -1063,6 +1063,7 @@
             // Stats Counter - Scroll Animation (When user scrolls to this section)
             const counters = document.querySelectorAll("#stats .counter");
             const counterTexts = document.querySelectorAll("#stats .counter-text");
+            let hasAnimated = false; // Track if animation has run
             
             // Initialize all counters to 0
             counters.forEach((el) => {
@@ -1073,7 +1074,7 @@
                 el.textContent = el.dataset.target;
             });
             
-            // Animate counters when scrolling into view
+            // Animate counters when scrolling into view - ONLY ONCE
             counters.forEach((counter) => {
                 const target = parseInt(counter.dataset.target) || 0;
                 if (!target) return;
@@ -1082,13 +1083,19 @@
                     scrollTrigger: {
                         trigger: "#stats",
                         start: "top center",
-                        once: true // Only animate once
-                    },
-                    duration: 3,
-                    ease: "power2.out",
-                    textContent: target,
-                    onUpdate: function() {
-                        counter.textContent = Math.round(this.progress() * target);
+                        onEnter: () => {
+                            if (!hasAnimated) {
+                                hasAnimated = true;
+                                // Start animation
+                                gsap.to(counter, {
+                                    duration: 3,
+                                    ease: "power2.out",
+                                    onUpdate: function() {
+                                        counter.textContent = Math.round(this.progress() * target);
+                                    }
+                                });
+                            }
+                        }
                     }
                 });
             });
